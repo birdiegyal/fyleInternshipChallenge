@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+    <title>FYLE Internship Challenge</title>
+</head>
+
+<body>
+    <section id="tax-calculator-section">
+        <form action="" id="tax-calculator-form" onsubmit="" method="post" name="tax-calculator-form">
+            <div class="tax-calculator-div">
+                <fieldset>
+                    <label for="grossAnnualIncome"
+                        data-desc="Gross annual income is your total salary in a year before any deductions.">Enter
+                        annual gross income</label>
+                    <input type="text" id="grossAnnualIncome" placeholder="Enter annual gross income"
+                        name="grossAnnualIncome">
+                </fieldset>
+                <fieldset>
+                    <label for="extraIncome"
+                        data-desc="Extra income is income thats generated from any other means. ">Enter extra
+                        income</label>
+                    <input name="extraIncome" type="text" id="extraIncome"
+                        placeholder="Enter extra income from other sources">
+                </fieldset>
+                <fieldset>
+                    <label for="ageGrp" data-desc="
+                    What age group do you fall in?">Enter age group</label>
+                    <select name="ageGrp" id="ageGrp" required>
+                        <option value="<40"> &lt; 40</option>
+                        <option value=">= 40 and <60"> &ge; 40 & &gt; 60</option>
+                        <option value=">=60"> &ge; 60</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <label for="totalApplicableDeduc" data-desc="Enter what you save by knowing tax redemptions">Enter
+                        total applicable deductions</label>
+                    <input name="totalApplicableDeduc" type="text" id="totalApplicableDeduc"
+                        placeholder="Add total applicable deductions">
+                </fieldset>
+            </div>
+            <input type="submit" id="calculate-tax" class="btn">
+
+            <dialog>
+                <h1>Your overall income will be</h1>
+                <p id="afterTaxes"></p>
+                <p>after tax deductions</p>
+                <input id="close-dialog" class="btn" type="button" value="close">
+            </dialog>
+
+        </form>
+    </section>
+</body>
+
+</html>
