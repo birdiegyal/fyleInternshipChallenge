@@ -8,7 +8,6 @@ taxCalculatorForm.addEventListener("submit", (e) => {
     e.preventDefault() //stop event propagation.
 
     const invalidFields = validateForm()
-    console.log(invalidFields)
     if (invalidFields.length) {
         notifyError(invalidFields)
     } else {

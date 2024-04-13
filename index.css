@@ -5,7 +5,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 body {
   margin: 0px;
   width: 100vw;
@@ -153,6 +152,7 @@ dialog[open] {
   & h1,
   p {
     margin: 2px;
+    align-self: center;
   }
 
   & input {
