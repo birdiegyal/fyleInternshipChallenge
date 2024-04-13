@@ -3,6 +3,19 @@
   so the direct values re set for mobile devices and media queries style for bigger devices.
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+  margin: 0px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Montserrat, sans-serif;
+}
+
 #tax-calculator-form {
   display: flex;
   flex-direction: column;
@@ -16,16 +29,14 @@
   border-radius: 2px;
 }
 
-#tax-calculator-section {
-  margin: auto;
-}
-
 .btn {
   background-color: rgb(77, 75, 218);
   color: #fff;
   font-weight: bold;
   font-size: large;
   min-width: 80%;
+  border-radius: 8px;
+  margin-top: 8px;
 }
 
 fieldset {
@@ -37,31 +48,77 @@ fieldset {
   margin-top: 12px;
   min-width: 80%;
   position: relative;
+
+  & div {
+    display: flex;
+    align-items: center;
+    border: 4px solid gainsboro;
+    margin-top: 8px;
+    border-radius: 8px;
+    padding: 2px;
+    & span {
+      visibility: hidden;
+      position: absolute;
+      left: calc(100% - 32px);
+    }
+  }
+
+  label {
+    font-weight: 700;
+  }
+}
+
+span:hover::after {
+  visibility: visible;
+  content: attr(data-validation-rule);
+  position: absolute;
+  padding: 2px 4px;
+  color: rgba(0, 0, 0, 0.925);
+  background-color: rgba(161, 161, 161, 0.562);
+  border: 1px solid rgba(128, 128, 128, 0.658);
+  border-radius: 4px;
+  z-index: 4;
+  font-size: 12px;
 }
 
 input,
 select {
+  position: relative;
   padding: 8px;
-  border: 1px solid gainsboro;
-  border-radius: 6px;
-  margin-top: 4px;
-  font-size: medium;
+  font-size: large;
+  border-color: transparent;
+  overflow: hidden;
+  outline-color: transparent;
+
 }
 
 input::placeholder {
+  font-size: small;
   color: rgb(180, 180, 180);
 }
 
+input[type="text"], input[type="text"]:focus, input[type="text"]:hover, input[type="text"]:focus-visible {
+  flex-grow: 3;
+  border-color: transparent;
+  outline-color: transparent;
+}
+
+.ageGrpField {
+  border: 4px solid gainsboro;
+    margin-top: 8px;
+    border-radius: 6px;
+}
+
 label::after {
-  content: "some bullshit";
+  content: "icon";
   background-image: url("./whatisit.svg");
   color: transparent;
   background-repeat: no-repeat;
   background-size: 18px;
-  margin-left: 2px;
-  margin-top: 4px;
   display: inline-flex;
   flex-shrink: 1;
+  margin-left: 2px;
+  font-weight: lighter;
 }
 
 label:hover::after,
@@ -74,10 +131,8 @@ label:focus::after {
   border: 1px solid rgba(128, 128, 128, 0.658);
   border-radius: 4px;
   position: absolute;
-  offset-anchor: 2px 2px;
   z-index: 2;
   font-size: 12px;
-  transition: position 2s ease-in;
 }
 
 dialog::backdrop {
@@ -112,9 +167,12 @@ dialog[open] {
     height: 35svh;
   }
 
+  input::placeholder {
+    font-size: medium;
+  }
+
   #tax-calculator-form {
     width: 70vw;
-    height: 50vh;
     padding-left: 32px;
     padding-right: 32px;
   }
@@ -127,9 +185,11 @@ dialog[open] {
     height: 35svh;
   }
 
+  input::placeholder {
+    font-size: large;
+  }
   #tax-calculator-form {
     max-width: 40vw;
-    height: 60vh;
     padding-left: 24px;
     padding-right: 24px;
   }

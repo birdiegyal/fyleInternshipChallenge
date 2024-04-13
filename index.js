@@ -1,17 +1,20 @@
 const taxCalculatorForm = document.getElementById("tax-calculator-form")
-let afterTaxes
-
 const afterTaxesElem = document.getElementById("afterTaxes")
 const dialog = document.querySelector("dialog")
 const closeDialog = document.getElementById("close-dialog")
-
+let afterTaxes
 
 taxCalculatorForm.addEventListener("submit", (e) => {
     e.preventDefault() //stop event propagation.
 
-
-    afterTaxesElem.innerText = calcIncomeAfterTaxes()
-    dialog.showModal()
+    const invalidFields = validateForm()
+    console.log(invalidFields)
+    if (invalidFields.length) {
+        notifyError(invalidFields)
+    } else {
+        afterTaxesElem.innerText = calcIncomeAfterTaxes()
+        dialog.showModal()
+    }
 })
 
 closeDialog.addEventListener("click", (e) => {
@@ -56,8 +59,23 @@ function calcIncomeAfterTaxes() {
         afterTaxes = OI - totalTax
 
         return afterTaxes
-        
+
     } catch (error) {
         console.log(error)
     }
+}
+
+// this func returns a array of invalid fields.
+function validateForm() {
+    const formdata = new FormData(taxCalculatorForm)
+    Array.from(formdata.keys()).map((fieldname) => fieldname !== "ageGrp" && (document.getElementById(fieldname).nextElementSibling.style.visibility = "hidden"))
+    return Array.from(formdata.keys()).filter((fieldname) => fieldname !== "ageGrp" && (!formdata.get(fieldname) || isNaN(Number(formdata.get(fieldname)))))
+}
+
+// this function highlight the invalid fields. 
+function notifyError(fields) {
+    fields.forEach((field) => {
+        field = document.getElementById(field).nextElementSibling
+        field.style.visibility = "visible"
+    })
 }
