@@ -155,6 +155,10 @@ dialog[open] {
     align-self: center;
   }
 
+  & #afterTaxes {
+    font-weight: 500;
+  }
+
   & input {
     margin-top: 16px;
   }
@@ -193,4 +197,12 @@ dialog[open] {
     padding-left: 24px;
     padding-right: 24px;
   }
+}
+
+.show-dialog-title, .show-dialog-follow-title {
+  display: block;
+}
+
+.hide-dialog-title, .hide-dialog-follow-title {
+  display: none;
 }

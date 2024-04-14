@@ -8,19 +8,34 @@ taxCalculatorForm.addEventListener("submit", (e) => {
     e.preventDefault() //stop event propagation.
 
     const invalidFields = validateForm()
+    
     if (invalidFields.length) {
         notifyError(invalidFields)
     } else {
-        afterTaxesElem.innerText = calcIncomeAfterTaxes()
+        
+        const dialogTitle = document.getElementById("dialog-title")
+        const dialogFollowTitle = document.getElementById("dialog-follow-title")           
+        const calculatedIncome = calcIncomeAfterTaxes()
+
+        if (isNaN(calculatedIncome)) {
+            dialogTitle.className = "hide-dialog-title"
+            dialogFollowTitle.className = "hide-dialog-follow-title"
+
+        } else {
+            dialogTitle.className = "show-dialog-title"
+            dialogFollowTitle.className = "show-dialog-follow-title"
+        }
+
+        afterTaxesElem.innerText = calculatedIncome
         dialog.showModal()
     }
+
 })
 
 closeDialog.addEventListener("click", (e) => {
     e.preventDefault()
     dialog.close()
 })
-
 
 function calcIncomeAfterTaxes() {
     const formdata = new FormData(taxCalculatorForm)
@@ -56,6 +71,10 @@ function calcIncomeAfterTaxes() {
 
         const totalTax = taxPercentage * (OI - 8e5)
         afterTaxes = OI - totalTax
+
+        if (isNaN(afterTaxes)) {
+            afterTaxes = "Your Income is not taxable."
+        }
 
         return afterTaxes
 
